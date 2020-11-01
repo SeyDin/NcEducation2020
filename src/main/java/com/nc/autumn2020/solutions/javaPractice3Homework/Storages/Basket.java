@@ -1,6 +1,6 @@
 package com.nc.autumn2020.solutions.javaPractice3Homework.Storages;
 
-import com.nc.autumn2020.solutions.javaPractice3Homework.Fruits.Fruit;
+import com.nc.autumn2020.solutions.javaPractice3Homework.foodStuff.Fruit;
 
 public class Basket extends Storage{
     private final double maxWeight;

@@ -1,7 +1,8 @@
 package com.nc.autumn2020.solutions.javaPractice3Homework.Storages;
 
-import com.nc.autumn2020.solutions.javaPractice3Homework.Fruits.Fruit;
+import com.nc.autumn2020.solutions.javaPractice3Homework.foodStuff.Fruit;
 
+import java.io.*;
 import java.util.Arrays;
 
 public abstract class Storage {
@@ -15,17 +16,16 @@ public abstract class Storage {
     protected abstract void setCurWeight(double curWeight);
     protected abstract Fruit[] getFruitArray();
 
-    private void increaseCurWeight(double inc){
-        this.setCurWeight(this.getCurWeight() + inc);
+    private void shiftCurWeight(double shift){
+        this.setCurWeight(this.getCurWeight() + shift);
     }
 
-    public void addFruit(Fruit fruit){
-        int emptySlot = checkSpace(this.getFruitArray());
+    public void addFruit(Fruit fruit) throws IOException, ClassNotFoundException {
+        int emptySlot = checkFreeSpace(this.getFruitArray());
         if (emptySlot >= 0){
             if (enoughWeight(fruit)) {
-                this.getFruitArray()[emptySlot] = fruit;
-                //Если это кто-нибудь прочитает: напишите в скайп как сюда поставить копирующий конструктор?!!!
-                this.increaseCurWeight(fruit.getWeight());
+                this.getFruitArray()[emptySlot] = cloneMe(fruit);
+                this.shiftCurWeight(fruit.getWeight());
             }
             else System.out.println("Too much weight");
         }
@@ -33,14 +33,33 @@ public abstract class Storage {
             System.out.println("Not enough space");
         }
     }
+    public Fruit takeFruit() throws IOException, ClassNotFoundException {
+        fruitArray = this.getFruitArray();
+        int fruitSlot = checkIsFruit(fruitArray);
+        if (fruitSlot >= 0) {
+            Fruit fruit = cloneMe(fruitArray[fruitSlot]);
+            this.getFruitArray()[fruitSlot] = null;
+            this.shiftCurWeight(-fruit.getWeight());
+            return fruit;
+        }
+        System.out.println("There is no fruits");
+        return null;
+    }
 
     private boolean enoughWeight(Fruit fruit){
         return this.getCurWeight() + fruit.getWeight() <= this.getMaxWeight();
     }
 
-    private int checkSpace(Fruit[] fruitArray){
+    private int checkFreeSpace(Fruit[] fruitArray){
         for (int i = 0; i < fruitArray.length; i++) {
             if (fruitArray[i] == null) return i;
+        }
+        return -1;
+    }
+
+    private int checkIsFruit(Fruit[] fruitArray){
+        for (int i = 0; i < fruitArray.length; i++) {
+            if (fruitArray[i] != null) return i;
         }
         return -1;
     }
@@ -50,5 +69,16 @@ public abstract class Storage {
         return "Storage{" +
                 "fruitArray=" + Arrays.toString(this.getFruitArray()) +
                 '}';
+    }
+    private Fruit cloneMe(Fruit fruit) throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream ous = new ObjectOutputStream(baos);
+        //сохраняем состояние фрукта  в поток и закрываем поток
+        ous.writeObject(fruit);
+        ous.close();
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bais);
+        Fruit cloneFruit = (Fruit) ois.readObject();
+        return cloneFruit;
     }
 }

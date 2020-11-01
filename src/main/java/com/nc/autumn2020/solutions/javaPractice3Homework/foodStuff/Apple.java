@@ -1,4 +1,4 @@
-package com.nc.autumn2020.solutions.javaPractice3Homework.Fruits;
+package com.nc.autumn2020.solutions.javaPractice3Homework.foodStuff;
 
 public class Apple extends Fruit {
 
