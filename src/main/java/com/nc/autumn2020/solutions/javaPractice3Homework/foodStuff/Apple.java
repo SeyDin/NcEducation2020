@@ -16,6 +16,11 @@ public class Apple extends Fruit {
     }
 
     @Override
+    public double getCalory() {
+        return this.calory;
+    }
+
+    @Override
     public String toString() {
         return "Apple";
     }

@@ -6,18 +6,18 @@ public class Orange extends Fruit {
     private final double calory;
 
     public Orange() {
-        this.weight = 0.4;
-        this.calory = 200;
-    }
-
-    private Orange(Orange orange) {
-        this.weight = orange.weight;
-        this.calory = orange.calory;
+         this.weight = 0.4;
+         this.calory = 200;
     }
 
     @Override
     public double getWeight() {
         return this.weight;
+    }
+
+    @Override
+    public double getCalory() {
+        return this.calory;
     }
 
     @Override

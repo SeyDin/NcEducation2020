@@ -7,10 +7,6 @@ import java.util.Arrays;
 
 public abstract class Storage {
 
-    private double maxWeight;
-    private double curWeight;
-    private Fruit[] fruitArray;
-
     public abstract double getMaxWeight();
     public abstract double getCurWeight();
     protected abstract void setCurWeight(double curWeight);
@@ -34,7 +30,7 @@ public abstract class Storage {
         }
     }
     public Fruit takeFruit() throws IOException, ClassNotFoundException {
-        fruitArray = this.getFruitArray();
+        Fruit[] fruitArray = this.getFruitArray();
         int fruitSlot = checkIsFruit(fruitArray);
         if (fruitSlot >= 0) {
             Fruit fruit = cloneMe(fruitArray[fruitSlot]);
@@ -78,7 +74,6 @@ public abstract class Storage {
         ous.close();
         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
         ObjectInputStream ois = new ObjectInputStream(bais);
-        Fruit cloneFruit = (Fruit) ois.readObject();
-        return cloneFruit;
+        return (Fruit) ois.readObject();
     }
 }
