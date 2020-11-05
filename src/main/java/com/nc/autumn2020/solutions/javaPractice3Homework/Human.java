@@ -10,6 +10,6 @@ public class Human {
     }
 
     public void eat(Food food){
-        System.out.println("I just ate " + food.getCalory() + " calories");
+        System.out.println("I just ate " + food.getCalories() + " calories");
     }
 }

@@ -1,4 +1,4 @@
-package com.nc.autumn2020.lesson6;
+package com.nc.autumn2020.lesson6Practice;
 
 import com.nc.autumn2020.LessonApi;
 import com.plugin.api.Plugin;

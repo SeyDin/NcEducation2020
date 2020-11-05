@@ -3,11 +3,11 @@ package com.nc.autumn2020.solutions.javaPractice3Homework.foodStuff;
 public class Orange extends Fruit {
 
     private final double weight;
-    private final double calory;
+    private final double calories;
 
     public Orange() {
          this.weight = 0.4;
-         this.calory = 200;
+         this.calories = 200;
     }
 
     @Override
@@ -16,8 +16,8 @@ public class Orange extends Fruit {
     }
 
     @Override
-    public double getCalory() {
-        return this.calory;
+    public double getCalories() {
+        return this.calories;
     }
 
     @Override
