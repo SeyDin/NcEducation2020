@@ -1,10 +1,6 @@
 package com.nc.autumn2020;
 
-import com.nc.autumn2020.lesson6Practice.DynamicClassLoaderExample;
-import com.nc.autumn2020.lesson6Practice.urlki.RunUrlHolderExample;
-import com.nc.autumn2020.lesson6Practice.urlki.UrlHolder;
-import com.nc.autumn2020.lesson6Practice.urlki.UrlHolderFactory;
-import com.nc.autumn2020.solutions.javaPractice3Homework.task;
+import com.nc.autumn2020.solutions.javaPractice6Homework.RunUrlHolderExample;
 
 import java.io.IOException;
 

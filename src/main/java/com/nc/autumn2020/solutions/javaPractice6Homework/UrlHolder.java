@@ -1,11 +1,9 @@
-package com.nc.autumn2020.lesson6Practice.urlki;
+package com.nc.autumn2020.solutions.javaPractice6Homework;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class UrlHolder {
     private String protocol;

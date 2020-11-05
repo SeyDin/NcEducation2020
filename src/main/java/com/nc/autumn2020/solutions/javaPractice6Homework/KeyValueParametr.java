@@ -1,4 +1,4 @@
-package com.nc.autumn2020.lesson6Practice.urlki;
+package com.nc.autumn2020.solutions.javaPractice6Homework;
 
 public class KeyValueParametr {
     private String key;
