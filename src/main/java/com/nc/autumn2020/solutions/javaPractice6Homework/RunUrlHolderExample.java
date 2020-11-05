@@ -10,11 +10,12 @@ public class RunUrlHolderExample implements LessonApi {
         String url2 = "https://www.sgu.ru/schedule/fn/do/205";
         String url3 = "https://ru.wikipedia.org/wiki/%D0%A4%D1%83%D1%80%D1%8C%D0%B5,_%D0%A8%D0%B0%D1%80%D0%BB%D1%8C";
         String url4 = "https://сайтроссия.рф/news";
+        String url5 = "https://www.google.com";
         String targetUrl = url1;
         UrlHolder x = UrlHolderFactory.createInstance(targetUrl);
         System.out.println(targetUrl);
         System.out.println(x);
         System.out.println(targetUrl.equals(x.toString()));
-        System.out.println(x.detailView());
+        //System.out.println(x.detailView());
     }
 }

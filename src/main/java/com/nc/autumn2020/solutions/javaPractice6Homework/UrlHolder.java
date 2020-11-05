@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class UrlHolder {
     private String protocol;
     private String serverAdress;
-    private String onServerAdress = "";
+    private String onServerAdress = null;
     private int port;
     private KeyValueParametr[] parametrs;
 
@@ -97,7 +97,7 @@ public class UrlHolder {
             StringBuilder result = new StringBuilder();
             for (String section : onServerAdressArr
             ) {
-                boolean cyrillic = section.chars()
+                final boolean cyrillic = section.chars()
                         .mapToObj(Character.UnicodeBlock::of)
                         .anyMatch(b -> b.equals(Character.UnicodeBlock.CYRILLIC));
                 if (cyrillic) {
@@ -174,6 +174,6 @@ public class UrlHolder {
             builder = builder.replace(index, index + oldStrLength, newStr);
 
         }
-        return builder.toString();
+        return builder.toString().intern();
     }
 }
