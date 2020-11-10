@@ -28,7 +28,7 @@ public class RandomProvider {
     }
 
     /*
-    Если числа кончились, надобность в массиве также отпадает.
+    Если числа кончились, надобность в массиве также отпадает..
      */
     public int getNumber(){
         if (counter == randomNumbers.length-1){
