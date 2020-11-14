@@ -1,5 +1,6 @@
 package com.nc.autumn2020;
 
+import com.nc.autumn2020.lessonFileVisitor.FileVisitorSolution;
 import com.nc.autumn2020.solutions.lesson5RandomProvider.RandomProviderSolution;
 
 import java.io.IOException;
@@ -10,7 +11,9 @@ public class Main {
         // Не стирать
         //DynamicClassLoaderExample x = new DynamicClassLoaderExample();
         //x.executeSolution(args);
-        RandomProviderSolution x = new RandomProviderSolution();
-        x.executeSolution(args);
+        /*RandomProviderSolution x = new RandomProviderSolution();
+        x.executeSolution(args);*/
+        FileVisitorSolution fileVisitorSolution = new FileVisitorSolution();
+        fileVisitorSolution.executeSolution(args);
     }
 }
