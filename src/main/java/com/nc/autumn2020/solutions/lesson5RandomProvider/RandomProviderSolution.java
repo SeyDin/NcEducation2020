@@ -8,12 +8,13 @@ import java.util.Arrays;
 public class RandomProviderSolution implements LessonApi {
 
     @Override
-    public void executeSolution(String[] args) throws MalformedURLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
-        RandomProvider randomProvider = new RandomProvider(2);
-        System.out.println("Hurray!");
-        System.out.println(randomProvider.getNumber());
-        System.out.println(randomProvider.getNumber());
-        System.out.println(randomProvider.getNumber());
+    public void executeSolution(String[] args) throws Exception {
+        try (RandomProvider randomProvider = new RandomProvider(2)) {
+            System.out.println("Hurray!");
+            System.out.println(randomProvider.getNumber());
+            System.out.println(randomProvider.getNumber());
+            System.out.println(randomProvider.getNumber());
+        }
 
         // Работа метода clear
         /*RandomProvider randomProvider1 = new RandomProvider(10);

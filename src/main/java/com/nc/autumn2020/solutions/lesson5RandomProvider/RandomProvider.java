@@ -2,7 +2,7 @@ package com.nc.autumn2020.solutions.lesson5RandomProvider;
 
 import java.util.Arrays;
 
-public class RandomProvider {
+public class RandomProvider implements AutoCloseable{
     private int counter = -1;
     private int[] randomNumbers;
 
@@ -32,7 +32,6 @@ public class RandomProvider {
      */
     public int getNumber(){
         if (counter == randomNumbers.length-1){
-            randomNumbers = null;
             throw new IndexOutOfBoundsException("Numbers are out");
         }
         return randomNumbers[++counter];
@@ -40,5 +39,10 @@ public class RandomProvider {
 
     public int[] getRandomNumbers() {
         return randomNumbers.clone();
+    }
+
+    @Override
+    public void close() throws Exception {
+        randomNumbers = null;
     }
 }

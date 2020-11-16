@@ -11,9 +11,13 @@ public class Main {
         // Не стирать
         //DynamicClassLoaderExample x = new DynamicClassLoaderExample();
         //x.executeSolution(args);
-        /*RandomProviderSolution x = new RandomProviderSolution();
-        x.executeSolution(args);*/
-        FileVisitorSolution fileVisitorSolution = new FileVisitorSolution();
-        fileVisitorSolution.executeSolution(args);
+        RandomProviderSolution x = new RandomProviderSolution();
+        try {
+            x.executeSolution(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*FileVisitorSolution fileVisitorSolution = new FileVisitorSolution();
+        fileVisitorSolution.executeSolution(args);*/
     }
 }
