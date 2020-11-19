@@ -10,8 +10,7 @@ public class DataBase {
     @PropertyObjectValue(value = "${custom.class}")
     private Object customObject;
 
-
-    /*@PropertyObjectValue("${custom.class}")
+/*@PropertyObjectValue("${custom.class}")
     private CustomObject customObject;*/
 
     public DataBase() {
@@ -29,12 +28,17 @@ public class DataBase {
         return dataBaseName;
     }
 
+    public Object getCustomObject() {
+        return customObject;
+    }
+
     @Override
     public String toString() {
         return "DataBase{" +
                 "userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", dataBaseName='" + dataBaseName + '\'' +
+                ", customObject=" + customObject +
                 '}';
     }
 }

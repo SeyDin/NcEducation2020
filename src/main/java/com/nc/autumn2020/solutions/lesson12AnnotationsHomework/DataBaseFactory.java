@@ -4,6 +4,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.Properties;
 
 public class DataBaseFactory {
@@ -14,15 +17,15 @@ public class DataBaseFactory {
     private DataBaseFactory() {
     }
 
-    public static DataBase newInstance() {
+    public static DataBase newInstance() throws MalformedURLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         DataBase dataBase = new DataBase();
         Class<? extends DataBase> aClass = dataBase.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field declaredField : declaredFields) {
             Annotation[] declaredAnnotations = declaredField.getDeclaredAnnotations();
             for (Annotation declaredAnnotation : declaredAnnotations) {
-                System.out.println("Нашли анотацию класса - " + declaredAnnotation.getClass());
                 boolean b = declaredAnnotation instanceof PropertyValue;
+                boolean b2 = declaredAnnotation instanceof PropertyObjectValue;
                 if (b) {
                     PropertyValue propertyValue = (PropertyValue) declaredAnnotation;
                     String value = propertyValue.value();
@@ -43,6 +46,38 @@ public class DataBaseFactory {
                         }
                         System.out.println(parsedValue+"="+property);
                     }
+                } else if (b2){
+                    PropertyObjectValue propertyObjectValue = (PropertyObjectValue) declaredAnnotation;
+                    String value = propertyObjectValue.value();
+                    if (value.startsWith("$")) {
+                        String parsedValue = value.substring(value.indexOf("{") + 1, value.indexOf("}"));
+                        System.out.println("parsedValue = " + parsedValue);
+                        try {
+                            PROPERTIES.load(new FileReader("dataBase.properties"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        declaredField.setAccessible(true);
+                        String property = PROPERTIES.getProperty(parsedValue);
+                        System.out.println("property = " + property);
+
+                        //Жуткий гибрид кода из интернета и из урока 6
+                        //Рефлексия пугает)
+                        URL classUrl = new URL("file:\\Users\\Saint\\Desktop\\Nc_projects\\Education\\src\\main\\java\\com\\nc\\autumn2020\\solutions\\lesson12AnnotationsHomework\\");
+                        URL[] classUrls = { classUrl };
+                        URLClassLoader ucl = new URLClassLoader(classUrls);
+                        Class c = ucl.loadClass(property);
+                        NewImpressiveClass newImpressiveClass = (NewImpressiveClass)c.newInstance();
+
+                        try {
+                            declaredField.set(dataBase, newImpressiveClass);
+                            declaredField.setAccessible(false);
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+                        //System.out.println(parsedValue+"="+property);
+                    }
+
                 }
             }
         }
