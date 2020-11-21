@@ -61,13 +61,10 @@ public class DataBaseFactory {
                         String property = PROPERTIES.getProperty(parsedValue);
                         System.out.println("property = " + property);
 
-                        //Жуткий гибрид кода из интернета и из урока 6
-                        //Рефлексия пугает)
-                        URL classUrl = new URL("file:\\Users\\Saint\\Desktop\\Nc_projects\\Education\\src\\main\\java\\com\\nc\\autumn2020\\solutions\\lesson12AnnotationsHomework\\");
-                        URL[] classUrls = { classUrl };
-                        URLClassLoader ucl = new URLClassLoader(classUrls);
-                        Class c = ucl.loadClass(property);
-                        NewImpressiveClass newImpressiveClass = (NewImpressiveClass)c.newInstance();
+                        //Нормальное решение
+                        Class<?> Clazz = Class.forName(property); // зачем <?> ?
+                        Object c = Clazz.newInstance();
+                        NewImpressiveClass newImpressiveClass = (NewImpressiveClass)c;
 
                         try {
                             declaredField.set(dataBase, newImpressiveClass);
