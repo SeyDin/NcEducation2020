@@ -11,7 +11,7 @@ public class StreamSolution implements LessonApi {
     @Override
     public void executeSolution(String[] args) {
 
-        List<Integer> arr = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        List<Integer> arr = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         List<List> arr2dim = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             arr2dim.add(arr);
