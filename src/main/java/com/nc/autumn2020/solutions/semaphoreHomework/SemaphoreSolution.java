@@ -28,7 +28,7 @@ public class SemaphoreSolution implements LessonApi {
              ) {
             new Thread(philosopher).start();
         }
-        System.out.println("Все поели");
+
 
     }
 }
