@@ -1,37 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean class="com.nc.autumn2020.springPackage.Radiostation" name="88.8">
-        <constructor-arg value="88.8fm"/>
-    </bean>
-    <bean class="com.nc.autumn2020.springPackage.Radiostation" name="shanson">
-        <constructor-arg value="shanson"/>
-    </bean>
-    <bean class="com.nc.autumn2020.springPackage.Radiostation" name="dance2die">
-        <constructor-arg value="dance2die"/>
-    </bean>
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean class="com.nc.autumn2020.springPackage.Radio" name="Mayak">
-        <constructor-arg ref="dance2die"/>
-    </bean>
+    <context:annotation-config/>
+    <bean class="com.nc.autumn2020.springPackage.solution2.Field" name="mainField" scope="singleton"></bean>
+    <bean class="com.nc.autumn2020.springPackage.solution2.Worker" name="worker" scope="prototype"/>
 
 
-    <!--
-    <bean class="A" id="firstObject" init-method="initMethod">
-        <constructor-arg value="Первая строка из спринга"/>
-        <constructor-arg ref="secondObject"/>
-        <property name="s2" value="Вторая строка из спринга"/>
-    </bean>
-    <bean class="B" id="secondObject" name="b"/>
-    -->
-    <!--
-    <bean class="C" id="cObj" factory-bean="cFactory" factory-method="getC">
-        <constructor-arg index="0" value="123"/>
-        <constructor-arg index="1" value="321"/>
-    </bean>
-    <bean class="CFactory" name="cFactory"/>
-    -->
+<!--    <bean class="com.nc.autumn2020.springPackage.Radiostation" name="88.8">-->
+<!--        <constructor-arg value="+6"/>-->
+<!--        <constructor-arg value="88.8fm"/>-->
+<!--    </bean>-->
+<!--    <bean class="com.nc.autumn2020.springPackage.Radiostation" name="shanson">-->
+<!--        <constructor-arg value="+16"/>-->
+<!--        <constructor-arg value="shanson"/>-->
+<!--    </bean>-->
+<!--    <bean class="com.nc.autumn2020.springPackage.Radiostation" name="dance2die">-->
+<!--        <constructor-arg value="+18"/>-->
+<!--        <constructor-arg value="dance2die"/>-->
+<!--    </bean>-->
+
+<!--    <bean class="com.nc.autumn2020.springPackage.Radio" name="Mayak">-->
+<!--        <constructor-arg ref="dance2die"/>-->
+<!--    </bean>-->
 
 </beans>
