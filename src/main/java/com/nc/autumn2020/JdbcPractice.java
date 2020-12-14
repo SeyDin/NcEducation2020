@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JdbcPractice {
+public class Main {
     private static Map<String,Integer> goods = new HashMap<>();
 
     private static void addToGoods (){
@@ -26,7 +26,6 @@ public class JdbcPractice {
             }
             int id = 0;
             for (Map.Entry<String, Integer> pair: goods.entrySet()) {
-                System.out.println(id);
                 try(PreparedStatement insStatement = conn.prepareStatement("INSERT INTO LAREK VALUES (?,?,?)")){
                     insStatement.setInt(1, id);
                     id++;
@@ -35,6 +34,21 @@ public class JdbcPractice {
                     insStatement.executeUpdate();
                 }
             }
+            id = 0;
+            Statement statement = conn.createStatement();
+            String sqlCommand = "SELECT * FROM LAREK";
+            ResultSet resultSet = statement.executeQuery(sqlCommand);
+            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                System.out.print(resultSet.getMetaData().getColumnLabel(i) + " ");
+            }
+            System.out.println();
+            while(resultSet.next()) {
+                System.out.println(resultSet.getInt(1) + " "
+                        + resultSet.getString(2) + " "
+                        + resultSet.getInt(3));
+            }
+
+
 
 
 
