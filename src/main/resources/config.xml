@@ -5,8 +5,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
-    <bean class="com.nc.autumn2020.springPackage.solution2.Field" name="mainField" scope="singleton"></bean>
-    <bean class="com.nc.autumn2020.springPackage.solution2.Worker" name="worker" scope="prototype"/>
+
+
 
 
 <!--    <bean class="com.nc.autumn2020.springPackage.Radiostation" name="88.8">-->
